@@ -65,18 +65,32 @@ def format_vnd(val):
     return f"{val:,.0f} VND"
 
 def metric_card(title, value, description="", color="#3B82F6"):
+    # Map primary color to matching premium gradient backgrounds and borders
+    bg_gradients = {
+        "#3B82F6": "linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(37, 99, 235, 0.03) 100%)",
+        "#10B981": "linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(4, 120, 87, 0.03) 100%)",
+        "#F59E0B": "linear-gradient(135deg, rgba(245, 158, 11, 0.12) 0%, rgba(180, 83, 9, 0.03) 100%)",
+        "#EC4899": "linear-gradient(135deg, rgba(236, 72, 153, 0.12) 0%, rgba(190, 24, 74, 0.03) 100%)"
+    }
+    bg_style = bg_gradients.get(color, "var(--secondary-background-color)")
+    border_color = f"rgba({int(color[1:3], 16)}, {int(color[3:5], 16)}, {int(color[5:7], 16)}, 0.35)" if color.startswith('#') and len(color) == 7 else "rgba(255,255,255,0.1)"
+    
     return f"""
     <div style="
-        background-color: var(--secondary-background-color);
+        background: {bg_style};
         border-radius: 16px;
         padding: 22px;
         border-left: 5px solid {color};
-        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        border-top: 1px solid {border_color};
+        border-right: 1px solid {border_color};
+        border-bottom: 1px solid {border_color};
+        box-shadow: 0 6px 20px 0 rgba(31, 38, 135, 0.03);
         margin: 10px 0;
+        transition: transform 0.2s ease-in-out;
     ">
-        <p style="font-size: 0.85rem; color: var(--text-color); opacity: 0.7; margin: 0 0 4px 0; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">{title}</p>
+        <p style="font-size: 0.85rem; color: var(--text-color); opacity: 0.8; margin: 0 0 6px 0; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">{title}</p>
         <h2 style="font-size: 1.8rem; color: var(--text-color); margin: 0 0 6px 0; font-weight: 800; line-height: 1.1;">{value}</h2>
-        <p style="font-size: 0.8rem; color: var(--text-color); opacity: 0.6; margin: 0;">{description}</p>
+        <p style="font-size: 0.8rem; color: var(--text-color); opacity: 0.6; margin: 0; font-weight: 500;">{description}</p>
     </div>
     """
 
