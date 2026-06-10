@@ -11,7 +11,7 @@ import plotly.graph_objects as go
 st.set_page_config(
     page_title="🏦 Hệ Thống Phát Hiện Giao Dịch Bất Thường Trong Kiểm Toán Nội Bộ Agribank",
     page_icon="🏦",
-    layout="blue",
+    layout="wide",
     initial_sidebar_state="expanded"
 )
 
