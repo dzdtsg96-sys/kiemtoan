@@ -9,7 +9,7 @@ import plotly.graph_objects as go
 
 # --- PAGE CONFIGURATION ---
 st.set_page_config(
-    page_title="🏦 Kiểm Toán Nội Bộ Agribank",
+    page_title="🏦 Hệ Thống Kiểm Toán Nội Bộ Agribank",
     page_icon="🏦",
     layout="wide",
     initial_sidebar_state="expanded"
